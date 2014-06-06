@@ -9,6 +9,13 @@ test_string = u'h\udce9llo w\u00f6rld'
 
 if sys.version_info[0:2] >= (3, 1):
     if unicode_strings.non_utf8_c_str() != test_string:
-        raise ValueError('Test comparison mismatch')
+        raise ValueError('Test comparison mismatch: non_utf8_c_str')
     if unicode_strings.non_utf8_std_string() != test_string:
-        raise ValueError('Test comparison mismatch')
+        raise ValueError('Test comparison mismatch: non_utf8_std_string')
+
+
+just_world = u'w\u00f6rld'
+if not unicode_strings.compare_utf8_c_str(just_world):
+    raise ValueError('Test comparison mismatch: compare_utf8_c_str')
+if not unicode_strings.compare_utf8_std_string(just_world):
+    raise ValueError('Test comparison mismatch: compare_utf8_c_str')
